@@ -3,10 +3,10 @@ package top.algorithms.learn.link;
 import java.util.LinkedList;
 
 /**
- * @Author:jrl
- * @Date:Create in 11:19 2021-2-26
- * @Description: 学习链表，练习判断回文
- */
+ * @author jrl
+ * @date 2021-2-26
+ * @description
+ **/
 public class Palindrome {
     /**
      * 单向链表
