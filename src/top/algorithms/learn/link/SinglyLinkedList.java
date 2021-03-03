@@ -1,6 +1,8 @@
 package top.algorithms.learn.link;
 
 
+import sun.rmi.runtime.NewThreadAction;
+
 import java.util.LinkedList;
 
 /**
@@ -16,9 +18,6 @@ import java.util.LinkedList;
  */
 public class SinglyLinkedList {
 
-    public static void main(String[] args) {
-
-    }
 
     /**
      * 属性：头结点
@@ -33,8 +32,8 @@ public class SinglyLinkedList {
         Node p = head;
         while (p != null) {
             sb.append(p.data + ",");
+            p = p.next;
         }
-        System.out.println(sb.toString());
         return sb.toString();
     }
 
@@ -235,4 +234,41 @@ public class SinglyLinkedList {
         this.deleteByNode(node);
     }
 
+    public void isPalindrome(String s) {
+        SinglyLinkedList singlyLinkedList = new SinglyLinkedList();
+        singlyLinkedList.head = null;
+        if (s == null || s.trim().equals("")) {
+            return;
+        }
+        char[] chars = s.toCharArray();
+        for (int i = 0; i < chars.length; i++) {
+            char c = chars[i];
+            boolean isNumOrLetter = (c >= 48 && c <= 57) || (c >= 65 && c <= 90) || (c >= 97 && c <= 122);
+            if (isNumOrLetter) {
+                if (singlyLinkedList.head == null) {
+                    singlyLinkedList.head = new Node(c);
+                } else {
+                    singlyLinkedList.insertTail(c);
+                }
+            }
+        }
+        System.out.println(singlyLinkedList);
+        Node head = singlyLinkedList.head;
+        if (head != null) {
+            Node dummy = new Node(0, head);
+            Node slow = dummy;
+            Node fast = dummy;
+            Node nextRealNext = head;
+            while (fast.next != null && fast.next.next != null) {
+
+
+            }
+            System.out.println(singlyLinkedList);
+        }
+    }
+
+    public static void main(String[] args) {
+        SinglyLinkedList singlyLinkedList = new SinglyLinkedList();
+        singlyLinkedList.isPalindrome("123456");
+    }
 }
