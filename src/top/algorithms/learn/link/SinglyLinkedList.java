@@ -234,12 +234,19 @@ public class SinglyLinkedList {
         this.deleteByNode(node);
     }
 
-    public void isPalindrome(String s) {
+    /**
+     * 判断一个字符串是不是回文
+     *
+     * @param s the String to be determined if it is a palindrome
+     * @date 2021-3-16
+     */
+    public boolean isPalindrome(String s) {
         SinglyLinkedList singlyLinkedList = new SinglyLinkedList();
         singlyLinkedList.head = null;
         if (s == null || s.trim().equals("")) {
-            return;
+            return false;
         }
+        // 将字符串转化为单链表
         char[] chars = s.toCharArray();
         for (int i = 0; i < chars.length; i++) {
             char c = chars[i];
@@ -253,22 +260,47 @@ public class SinglyLinkedList {
             }
         }
         System.out.println(singlyLinkedList);
+
         Node head = singlyLinkedList.head;
         if (head != null) {
             Node dummy = new Node(0, head);
             Node slow = dummy;
             Node fast = dummy;
-            Node nextRealNext = head;
+            //下一个结点
+            Node ne = head;
+            // 上一个结点
+            Node p = null;
+            // 翻转 前n/2个结点
             while (fast.next != null && fast.next.next != null) {
-
-
+                slow = ne;
+                fast = fast.next.next;
+                ne = slow.next;
+                slow.next = p;
+                p = slow;
             }
-            System.out.println(singlyLinkedList);
+            //单链表结点数为偶数个
+            if (fast.next == null) {
+                fast = ne;
+            } else {
+                fast = ne.next;
+            }
+            while (slow != null && fast != null) {
+                if (slow.data != fast.data) {
+                    return false;
+                }
+                slow = slow.next;
+                fast = fast.next;
+            }
         }
+        if (head == null){
+            return false;
+        }
+        return true;
     }
 
     public static void main(String[] args) {
         SinglyLinkedList singlyLinkedList = new SinglyLinkedList();
-        singlyLinkedList.isPalindrome("123456");
+        boolean palindrome = singlyLinkedList.isPalindrome("12321");
+        System.out.println(palindrome);
     }
 }
