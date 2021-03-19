@@ -2,12 +2,13 @@ package top.algorithms.learn.sort;
 
 /**
  * 插入排序
+ * 分为已经排好的和未排好的，每次从未排好的元素里拿第一个插入到已经排好的元素里的正确位置
  * 1.原地排序
- * 2.比较、插入
+ * 2.比较、移动
  * 3.时间复杂度
- * 平均时间复杂度：O(n^2)
  * 最好时间复杂度：O(n)
  * 最差时间复杂度：O(n^2)
+ * 平均时间复杂度：O(n^2)
  * 4.稳定
  *
  * @author jrl
@@ -15,8 +16,24 @@ package top.algorithms.learn.sort;
  */
 public class InsertionSort {
     public static void main(String[] args) {
-        int[] a = {3, 6, 8, 5, 7, 9, 10, 1};
-        insertionSort(a, 8);
+        int[][] a = new int[100000][2000];
+        a = initArray(a);
+        System.out.println(System.currentTimeMillis());
+        for (int i = 0; i < a.length; i++) {
+            insertionSort(a[i], 2000);
+        }
+        System.out.println(System.currentTimeMillis());
+    }
+
+    private static int[][] initArray(int[][] a) {
+        for (int i = 0; i < a.length; i++) {
+            int[] b = new int[2000];
+            for (int j = 0; j < 2000; j++) {
+                b[j] = (int) Math.random();
+            }
+            a[i] = b;
+        }
+        return a;
     }
 
     /**
@@ -42,9 +59,9 @@ public class InsertionSort {
                 }
             }
         }
-        for (int aa : a
-        ) {
-            System.out.println(aa);
-        }
+//        for (int aa : a
+//        ) {
+//            System.out.println(aa);
+//        }
     }
 }
