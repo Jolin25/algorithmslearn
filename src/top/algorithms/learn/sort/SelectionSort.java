@@ -7,7 +7,7 @@ package top.algorithms.learn.sort;
  * 最好、最差、平均：O（n^2）
  * 2.空间复杂度
  * O(1)
- * 3.不稳定
+ * 3.不稳定（因为是跨越式交换）
  * 4.比较、交换
  *
  * @author jrl
