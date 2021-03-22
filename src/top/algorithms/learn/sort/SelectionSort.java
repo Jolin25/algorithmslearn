@@ -9,6 +9,8 @@ package top.algorithms.learn.sort;
  * O(1)
  * 3.不稳定（因为是跨越式交换）
  * 4.比较、交换
+ * 5.优化
+ *  希尔排序：先做选择排序的预备准备，比较交换相隔较远的不同组的两个数，然后再整体选择排序
  *
  * @author jrl
  * @date Create in 09:52 2021-3-19
