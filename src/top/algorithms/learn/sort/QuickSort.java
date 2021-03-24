@@ -52,9 +52,15 @@ public class QuickSort {
         for (int i = begin; i < end; i++) {
             // 如果a[i]小于pivot，那么a[i]就和a[j]交换位置，即把a[i]放到小于pivot的最后一位上
             if (a[i] < pivot) {
-                int temp = a[i];
-                a[i++] = a[j];
-                a[j++] = temp;
+                // 这样更能体现如果第一个数就符合，那么j的含义
+                if (i == j) {
+                    j++;
+                } else {
+                    int temp = a[i];
+                    a[i++] = a[j];
+                    a[j++] = temp;
+                }
+
             }
         }
         //交换a[j] 和 a[pivotIndex] ，那么这个时候pivot就到了合适的位置，并且左右两边分别小于和大于它
