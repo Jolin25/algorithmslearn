@@ -1,5 +1,4 @@
 package top.algorithms.learn.sort;
-
 /**
  * 快速排序:(以下代码quickSortOld实现是错误的，只是实现了其基本思想，然而没有实现其重要的精髓：原地排序(quickSort方法实现了))
  * 采用分治思想
