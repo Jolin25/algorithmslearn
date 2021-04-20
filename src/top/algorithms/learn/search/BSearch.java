@@ -16,7 +16,7 @@ public class BSearch {
 //        System.out.println(hasTarget);
 //        int firstEqualValueIndex = getFirstEqualValueIndex(resource, target, 0, resource.length - 1);
 //        System.out.println(firstEqualValueIndex);
-        int lastValueIndex = getLastValueIndex(resource, resource.length - 1, 7);
+        int lastValueIndex = getLastValueIndex(resource, resource.length, target);
         System.out.println(lastValueIndex);
     }
 
@@ -156,7 +156,7 @@ public class BSearch {
             }
         }
         // 跳出循环后，left此时应该是在最后一个值的右边一位或者没有找到值
-        if (left == n || right < 0) {
+        if ((left == n && resource[n - 1] != target) || right < 0) {
             return -1;
         } else {
             return left - 1;
