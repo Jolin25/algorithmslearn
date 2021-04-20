@@ -4,20 +4,30 @@ import java.math.BigDecimal;
 
 /**
  * 二分查找
+ * 时间复杂度：log（n）
+ * 算法重点：终止条件、区间上下界更新方法、返回值选择
+ * 算法适用：求“值等于给定值”的二分查找确实不怎么会被用到，二分查找更适合用在“近似”查找问题，在这类问题上，二分查找的优势更加明显
  *
  * @author jrl
  * @date 2021/4/13
  */
 public class BSearch {
     public static void main(String[] args) {
-        int target = 7;
+        int target = 8;
+        //长度为8
         int[] resource = {1, 1, 3, 3, 4, 5, 7, 7};
 //        boolean hasTarget = bSearch(target, resource, 0, resource.length - 1);
 //        System.out.println(hasTarget);
 //        int firstEqualValueIndex = getFirstEqualValueIndex(resource, target, 0, resource.length - 1);
 //        System.out.println(firstEqualValueIndex);
-        int lastValueIndex = getLastValueIndex(resource, resource.length, target);
-        System.out.println(lastValueIndex);
+//        int lastValueIndex = getLastValueIndex(resource, resource.length, target);
+//        System.out.println(lastValueIndex);
+
+//        int firstBiggerOrEqualValueIndex = getFirstBiggerOrEqualValueIndex(resource, resource.length, target);
+
+//        System.out.println(firstBiggerOrEqualValueIndex);
+        int lastLessOrEqualValueIndex = getLastLessOrEqualValueIndex(resource, resource.length, target);
+        System.out.println(lastLessOrEqualValueIndex);
     }
 
     /**
@@ -161,6 +171,149 @@ public class BSearch {
         } else {
             return left - 1;
         }
+    }
+
+    /**
+     * 【作者答案】
+     * 获取最后一个值等于给定值的元素
+     *
+     * @param
+     * @return
+     * @date 2021/4/19
+     */
+    public int getLastValueIndex2(int[] a, int n, int value) {
+        int low = 0;
+        int high = n - 1;
+        while (low <= high) {
+            int mid = low + ((high - low) >> 1);
+            if (a[mid] > value) {
+                high = mid - 1;
+            } else if (a[mid] < value) {
+                low = mid + 1;
+            } else {
+                if ((mid == n - 1) || (a[mid + 1] != value)) return mid;
+                else low = mid + 1;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * 【我的答案】
+     * 查找第一个大于等于给定值的元素
+     *
+     * @param
+     * @return
+     * @date 2021-4-20
+     */
+    private static int getFirstBiggerOrEqualValueIndex(int[] resource, int n, int target) {
+        int left = 0;
+        int right = n - 1;
+        while (left <= right) {
+            int middle = left + ((right - left) >> 1);
+            int middleValue = resource[middle];
+            if (middleValue < target) {
+                // 值在右边
+                left++;
+            } else if (middleValue >= target) {
+                // 值在左边
+                right--;
+            }
+        }
+        // right在最终值的左边一位或者没有找到值
+        if (left == n) {
+            return -1;
+        } else {
+            return right + 1;
+        }
+    }
+
+    /**
+     * 【作者答案】
+     * 查找第一个大于等于给定值的元素
+     *
+     * @param
+     * @return
+     * @date 2021-4-20
+     */
+    public int getFirstBiggerOrEqualValueIndex2(int[] a, int n, int value) {
+        int low = 0;
+        int high = n - 1;
+        while (low <= high) {
+            int mid = low + ((high - low) >> 1);
+            if (a[mid] >= value) {
+                if ((mid == 0) || (a[mid - 1] < value)) return mid;
+                else high = mid - 1;
+            } else {
+                low = mid + 1;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * 【我的答案】
+     * 查找最后一个小于等于给定值的数
+     *
+     * @param
+     * @return
+     * @date 2021-4-20
+     */
+    private static int getLastLessOrEqualValueIndex(int[] resource, int n, int target) {
+        int left = 0;
+        int right = n - 1;
+        while (left <= right) {
+            int middle = left + ((right - left) >> 1);
+            int middleValue = resource[middle];
+            if (middleValue <= target) {
+                // 值在右边
+                if (middle == n - 1 || resource[middle + 1] > target) {
+                    return middle;
+                }
+                left++;
+            } else if (middleValue > target) {
+                // 值在左边
+                right--;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * [作者答案]
+     * 查找最后一个小于等于给定值的数
+     *
+     * @param
+     * @return
+     * @date 2021-4-20
+     */
+    public int getLastLessOrEqualValueIndex2(int[] a, int n, int value) {
+        int low = 0;
+        int high = n - 1;
+        while (low <= high) {
+            int mid = low + ((high - low) >> 1);
+            if (a[mid] > value) {
+                high = mid - 1;
+            } else {
+                if ((mid == n - 1) || (a[mid + 1] > value)) return mid;
+                else low = mid + 1;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * [我的答案] todo
+     * 如果有序数组是一个循环有序数组，比如 4，5，6，1，2，3。针对这种情况，如何实现一个求“值等于给定值”的二分查找算法呢？
+     *
+     * @param
+     * @return
+     * @date 2021-4-20
+     */
+    private static int getEqualValueIndex(int[] resource, int n, int target) {
+        int[] singleResource = new int[n];
+        int i = 0;
+        return -1;
     }
     /**
      * 求一个数的平方根，精确到小数点后6位
