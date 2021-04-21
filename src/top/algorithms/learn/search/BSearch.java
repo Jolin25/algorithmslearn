@@ -53,6 +53,12 @@ public class BSearch {
             return bSearch(target, resource, middle + 1, right);
         }
     }
+    /*二分查找算法的变形问题
+     *1、查找第一个等于给定数值的元素
+     *2、查找最后一个等于给定数值的元素
+     *3、查找第一个大于等于给定数值的元素
+     *4、查找第一个小于等于给定数值的元素
+     * */
 
     /**
      * 【我的初版答案】
@@ -306,14 +312,43 @@ public class BSearch {
      * [我的答案] todo
      * 如果有序数组是一个循环有序数组，比如 4，5，6，1，2，3。针对这种情况，如何实现一个求“值等于给定值”的二分查找算法呢？
      *
-     * @param
-     * @return
+     * @param resource 循环有序数组
+     * @param n        循环有序数组的长度
+     * @param target   目标值
+     * @return int[] 目标值所在下标位置
      * @date 2021-4-20
      */
-    private static int getEqualValueIndex(int[] resource, int n, int target) {
-        int[] singleResource = new int[n];
-        int i = 0;
-        return -1;
+    private static int[] getEqualValueIndex(int[] resource, int n, int target) {
+        /*
+         * 没有办法知道单个循环的界限
+         * */
+        return null;
+    }
+
+    /**
+     * 搜索旋转排序数组
+     * 整数数组 nums 按升序排列，数组中的值 互不相同 。
+     * 在传递给函数之前，nums 在预先未知的某个下标 k（0 <= k < nums.length）上进行了 旋转，使数组变为 [nums[k], nums[k+1], ..., nums[n-1], nums[0], nums[1], ..., nums[k-1]]（下标 从 0 开始 计数）。例如， [0,1,2,4,5,6,7] 在下标 3 处经旋转后可能变为 [4,5,6,7,0,1,2] 。
+     * 给你 旋转后 的数组 nums 和一个整数 target ，如果 nums 中存在这个目标值 target ，则返回它的下标，否则返回 -1 。
+     *
+     * @param
+     * @date 2021-4-21
+     * @return
+     */
+    class Solution {
+        public int search(int[] nums, int target) {
+            /*
+             * 二分查找旋转点，即查找第一个小于等于nums[0]的下标
+             * */
+
+            /*
+             * 根据下标0和旋转点的值，以及下标n-1的值，找出目标值可能的范围
+             * */
+            /*
+             * 二分法找目标值
+             * */
+            return -1;
+        }
     }
     /**
      * 求一个数的平方根，精确到小数点后6位
