@@ -13,9 +13,8 @@ import java.math.BigDecimal;
  */
 public class BSearch {
     public static void main(String[] args) {
-        int target = 8;
-        //长度为8
-        int[] resource = {1, 1, 3, 3, 4, 5, 7, 7};
+        int target = 0;
+        int[] resource = { 1,3,5};
 //        boolean hasTarget = bSearch(target, resource, 0, resource.length - 1);
 //        System.out.println(hasTarget);
 //        int firstEqualValueIndex = getFirstEqualValueIndex(resource, target, 0, resource.length - 1);
@@ -26,8 +25,11 @@ public class BSearch {
 //        int firstBiggerOrEqualValueIndex = getFirstBiggerOrEqualValueIndex(resource, resource.length, target);
 
 //        System.out.println(firstBiggerOrEqualValueIndex);
-        int lastLessOrEqualValueIndex = getLastLessOrEqualValueIndex(resource, resource.length, target);
-        System.out.println(lastLessOrEqualValueIndex);
+//        int lastLessOrEqualValueIndex = getLastLessOrEqualValueIndex(resource, resource.length, target);
+//        System.out.println(lastLessOrEqualValueIndex);
+        int search = search(resource, target);
+        System.out.println(search);
+
     }
 
     /**
@@ -330,25 +332,88 @@ public class BSearch {
      * 整数数组 nums 按升序排列，数组中的值 互不相同 。
      * 在传递给函数之前，nums 在预先未知的某个下标 k（0 <= k < nums.length）上进行了 旋转，使数组变为 [nums[k], nums[k+1], ..., nums[n-1], nums[0], nums[1], ..., nums[k-1]]（下标 从 0 开始 计数）。例如， [0,1,2,4,5,6,7] 在下标 3 处经旋转后可能变为 [4,5,6,7,0,1,2] 。
      * 给你 旋转后 的数组 nums 和一个整数 target ，如果 nums 中存在这个目标值 target ，则返回它的下标，否则返回 -1 。
-     *
+     * todo 优化 leetcode 33
      * @param
-     * @date 2021-4-21
      * @return
+     * @date 2021-4-21
      */
-    class Solution {
-        public int search(int[] nums, int target) {
-            /*
-             * 二分查找旋转点，即查找第一个小于等于nums[0]的下标
-             * */
-
-            /*
-             * 根据下标0和旋转点的值，以及下标n-1的值，找出目标值可能的范围
-             * */
-            /*
-             * 二分法找目标值
-             * */
-            return -1;
+    public static int search(int[] nums, int target) {
+        if (nums.length == 1) {
+            if (nums[0] == target) {
+                return 0;
+            } else {
+                return -1;
+            }
         }
+        /*
+         * 二分查找旋转点，即查找第一个小于等于nums[0]的下标，顺便比较一下等不等于目标值，等于的话就直接返回
+         * */
+        int leftMostValue = nums[0];
+        int left = 0;
+        int right = nums.length - 1;
+        int rotate = -1;
+        while (left <= right) {
+            int mid = left + ((right - left) >> 1);
+            int midValue = nums[mid];
+            if (midValue == target) {
+                return mid;
+            } else {
+                if (midValue <= leftMostValue) {
+                    if (mid == 0 || nums[mid - 1] > leftMostValue) {
+                        if (mid + 1 != nums.length && nums[mid + 1] < nums[mid]) {
+                            rotate = mid + 1;
+                        } else {
+                            rotate = mid;
+                        }
+                        break;
+                    }
+                    right = mid - 1;
+
+                } else {
+                    left = mid + 1;
+                }
+            }
+        }
+        if (rotate == -1){
+            rotate = 0;
+        }
+        /*
+         * 根据下标0和旋转点的值，以及下标n-1的值，找出目标值可能的范围
+         * */
+        int rotateValue = nums[rotate];
+        if (rotate == 0) {
+            if (target < rotateValue) {
+                return -1;
+            } else {
+                left = 0;
+                right = nums.length - 1;
+            }
+        } else {
+            if (target >= leftMostValue) {
+                left = 0;
+                right = rotate - 1;
+            } else {
+                left = rotate;
+                right = nums.length - 1;
+            }
+        }
+
+        /*
+         * 二分法找目标值
+         * */
+        while (left <= right) {
+            int mid = left + ((right - left) >> 1);
+            int midValue = nums[mid];
+            if (midValue == target) {
+                return mid;
+            }
+            if (target < midValue) {
+                right = --mid;
+            } else {
+                left = ++mid;
+            }
+        }
+        return -1;
     }
     /**
      * 求一个数的平方根，精确到小数点后6位
