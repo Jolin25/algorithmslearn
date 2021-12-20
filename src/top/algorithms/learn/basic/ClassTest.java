@@ -1,4 +1,4 @@
-package top.algorithms.learn.sort;
+package top.algorithms.learn.basic;
 
 import java.util.HashMap;
 import java.util.Map;
