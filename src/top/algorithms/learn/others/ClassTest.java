@@ -1,4 +1,4 @@
-package top.algorithms.learn.basic;
+package top.algorithms.learn.others;
 
 import java.util.HashMap;
 import java.util.Map;

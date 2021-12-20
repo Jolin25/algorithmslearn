@@ -1,6 +1,4 @@
-package top.algorithms.learn.basic;
-
-import org.omg.PortableInterceptor.INACTIVE;
+package top.algorithms.learn.others;
 
 import java.util.ArrayList;
 
