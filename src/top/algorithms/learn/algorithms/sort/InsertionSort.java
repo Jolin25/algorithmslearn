@@ -1,4 +1,4 @@
-package top.algorithms.learn.sort;
+package top.algorithms.learn.algorithms.sort;
 
 /**
  * 插入排序

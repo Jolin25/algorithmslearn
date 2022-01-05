@@ -1,4 +1,4 @@
-package top.algorithms.learn.queue;
+package top.algorithms.learn.structure.queue;
 
 /**
  * @author jrl

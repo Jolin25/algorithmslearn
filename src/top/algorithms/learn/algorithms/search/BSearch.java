@@ -1,6 +1,4 @@
-package top.algorithms.learn.search;
-
-import java.math.BigDecimal;
+package top.algorithms.learn.algorithms.search;
 
 /**
  * 二分查找

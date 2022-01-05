@@ -1,4 +1,4 @@
-package top.algorithms.learn.link;
+package top.algorithms.learn.structure.basic.link;
 
 import java.util.LinkedList;
 

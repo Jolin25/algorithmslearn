@@ -1,9 +1,5 @@
-package top.algorithms.learn.link;
+package top.algorithms.learn.structure.basic.link;
 
-
-import sun.rmi.runtime.NewThreadAction;
-
-import java.util.LinkedList;
 
 /**
  * 单链表：增、删、查找 设定数据类型为int

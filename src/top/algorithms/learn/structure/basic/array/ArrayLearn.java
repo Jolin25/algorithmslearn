@@ -1,4 +1,4 @@
-package top.algorithms.learn.others;
+package top.algorithms.learn.structure.basic.array;
 
 import java.util.ArrayList;
 
