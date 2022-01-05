@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * @Author:jrl
  * @Date:Create in 15:33 2021-2-24
  * @Description:验证数组下标越界问题 结论：java是会在运行时判断是否越界的，并不会和C一样只能根据数据basic地址找到对应的数据就展示出来
- * 如果越界会排除ArrayIndexOutOfBoundsException
+ * 如果越界会抛出ArrayIndexOutOfBoundsException
  */
 public class ArrayLearn {
     public static void main(String[] args) {
@@ -21,14 +21,17 @@ public class ArrayLearn {
 //            }
 //        }
     }
-    void learnArrayList(){
+
+    void learnArrayList() {
         /**
          * knowledge point:
-         *     ???疑问贼多，看了JVM以后过来解答一下，这个执行顺序有点迷啊
+         *   Q：???疑问贼多，看了JVM以后过来解答一下，这个执行顺序有点迷啊
+         *   A： 我认为的顺序：print一条，然后add一个
+         *      我已经不知道我在疑惑什么了。。。
          * */
 
         ArrayList<Integer> a = new ArrayList<>();
-        for (int i = 0; i < 11 ; i++) {
+        for (int i = 0; i < 11; i++) {
             System.out.println(i);
             a.add(i);
         }
