@@ -5,8 +5,9 @@ import java.util.ArrayList;
 /**
  * @Author:jrl
  * @Date:Create in 15:33 2021-2-24
- * @Description 验证数组下标越界问题 结论：java是会在运行时判断是否越界的，并不会和C一样只能根据数据basic地址找到对应的数据就展示出来
- * 如果越界会抛出ArrayIndexOutOfBoundsException
+ * @Description 验证数组下标越界问题
+ * 结论：java是会在运行时判断是否越界的，并不会和C一样只能根据数据basic地址找到对应的数据就展示出来，
+ * 如果越界会抛出ArrayIndexOutOfBoundsException。
  */
 public class ArrayLearn {
     public static void main(String[] args) {
