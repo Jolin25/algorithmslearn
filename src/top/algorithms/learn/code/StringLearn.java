@@ -1,5 +1,7 @@
 package top.algorithms.learn.code;
 
+import java.util.Stack;
+
 /**
  * @author jrl
  * @date Create in 16:19 2022/5/18
@@ -22,6 +24,10 @@ public class StringLearn {
         boolean a = Character.isAlphabetic('1');
         System.out.println(digit);
         System.out.println(a);
+
+        char[] chars = s.toCharArray();
+        Stack<Integer> stack = new Stack<>();
+
     }
 
 }
