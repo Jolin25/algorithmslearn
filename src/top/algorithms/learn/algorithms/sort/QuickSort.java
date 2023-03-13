@@ -1,10 +1,15 @@
 package top.algorithms.learn.algorithms.sort;
 /**
- * 快速排序:(以下代码quickSortOld实现是错误的，只是实现了其基本思想，然而没有实现其重要的精髓：原地排序(quickSort方法实现了))
+ * 快速排序:
+ * (以下代码 quickSortOld 实现是错误的，只是实现了其基本思想，然而没有实现其重要的精髓：原地排序(quickSort方法实现了))
+ *
  * 采用分治思想
- * 随机选取数组中的一个数作为pivot，小于pivot的放在左边，大于等于的放在右边。在左右两边又分别再选取各自的pivot，以此类推。
+ * 随机选取数组中的一个数作为 pivot，小于 pivot 的放在左边，大于等于的放在右边。
+ * 在左右两边又分别再选取各自的 pivot，以此类推。
  * 1.不稳定
- * 2.时间复杂度(递归的时候，想树，最外面那层就是树的深度，每增加一个深度就是最外面那一层所做的操作)
+ * 2.时间复杂度
+ * (递归的时候，想树，最外面那层就是树的深度，每增加一个深度就是最外面那一层所做的操作：找到 pivot 的最终位置)
+ * （n 是每一层比较&交换排序必然会操作的次数）
  * 平均、最好：O(nlogn)
  * 最差：O(n^2)
  * 3.空间复杂度（快排的精髓）
@@ -24,7 +29,7 @@ public class QuickSort {
     }
 
     public static int[] quickSort(int[] a, int begin, int end) {
-        // 把pivot放在合适的位置，并且分离出pivot左右两边。
+        // 把 pivot 放在合适的位置，并且分离出 pivot 左右两边。
 
         partition(a, begin, end);
         return a;
@@ -32,7 +37,7 @@ public class QuickSort {
 
     /**
      * 升序
-     * 划分pivot左右两边,[begin,end]
+     * 划分 pivot 左右两边,[begin,end]
      *
      * @param
      * @return pivot划分后最后确定的位置
@@ -42,16 +47,16 @@ public class QuickSort {
         if (begin >= end) {
             return;
         }
-        //划分pivot左右两边
-        // 选取数组最后一个数作为pivot（选哪个都行）
+        //划分 pivot 左右两边
+        // 选取数组最后一个数作为 pivot（选哪个都行）
         int pivotIndex = end;
         int pivot = a[pivotIndex];
         int j = begin;
-        // i 用来遍历，j用来划分小于pivot和大于pivot的部分，a[0]至a[j-1]为小于pivot的部分.
+        // i 用来遍历，j 用来划分小于 pivot 和大于 pivot 的部分，a[0] 至 a[j-1] 为小于 pivot 的部分.
         for (int i = begin; i < end; i++) {
-            // 如果a[i]小于pivot，那么a[i]就和a[j]交换位置，即把a[i]放到小于pivot的最后一位上
+            // 如果 a[i] 小于 pivot，那么 a[i] 就和 a[j] 交换位置，即把 a[i] 放到小于 pivot 的最后一位上
             if (a[i] < pivot) {
-                // 这样更能体现如果第一个数就符合，那么j的含义
+                // 这样更能体现如果第一个数就符合，那么 j 的含义
                 if (i == j) {
                     j++;
                 } else {
@@ -59,16 +64,15 @@ public class QuickSort {
                     a[i++] = a[j];
                     a[j++] = temp;
                 }
-
             }
         }
-        //交换a[j] 和 a[pivotIndex] ，那么这个时候pivot就到了合适的位置，并且左右两边分别小于和大于它
+        //交换 a[j] 和 a[pivotIndex] ，那么这个时候 pivot 就到了合适的位置，并且左右两边分别小于和大于它
         int temp = a[j];
         a[j] = a[pivotIndex];
         a[pivotIndex] = temp;
-        // 此时的pivotIndex其实就是j这个数
+        // 此时的 pivotIndex 其实就是 j 这个数
         pivotIndex = j;
-        //再分别处理左右两边，找到左右两边的pivot，并且划分好pivot左右两边
+        //再分别处理左右两边，找到左右两边的 pivot，并且划分好 pivot 左右两边
         partition(a, begin, pivotIndex - 1);
         partition(a, pivotIndex + 1, end);
     }

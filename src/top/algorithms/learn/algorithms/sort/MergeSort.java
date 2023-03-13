@@ -51,7 +51,7 @@ public class MergeSort {
             rightA[i] = a[i + rightBegin];
         }
         int[] mergedRight = mergeSort(rightA, rightN, 0, rightN - 1);
-        //将排好序的左右两边合并
+        //将各自排好序的左右两边合并
         //最后一个位置留给哨兵
         int[] mergedA = new int[n + 1];
         int result = 0;
